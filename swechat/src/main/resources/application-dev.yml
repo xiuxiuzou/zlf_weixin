@@ -1,0 +1,62 @@
+# Server settings
+
+server:
+  port: 8080
+  address: 127.0.0.1
+  session-timeout: 30
+  tomcat.uri-encoding: UTF-8
+  context-path: /swechat
+
+spring:
+ # HTTP ENCODING
+  http:
+        encoding.charset: UTF-8
+        encoding.enable: true
+        encoding.force: true
+
+  datasource:
+  # 主数据源配置信息
+    db1:
+        type : com.alibaba.druid.pool.DruidDataSource
+        url : jdbc:oracle:thin:@//192.1.1.196:1521/airext
+        username : p_tss
+        password : scal95378
+        driverClassName : oracle.jdbc.driver.OracleDriver
+        initialSize : 5
+        minIdle : 5
+        maxActive : 100
+        maxWait : 60000
+        poolPreparedStatements : true
+        maxPoolPreparedStatementPerConnectionSize : 100
+        validationQuery : SELECT 1 FROM DUAL
+        filters: stat,wall,LOG4J
+        testOnBorrow : false
+        testWhileidle : true
+        timeBetweenEvictionRunsMillis : 18800
+        connectionProperties : druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
+  # 其他数据源配置信息
+    db2:
+        type : com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:oracle:thin:@//127.0.0.1:1521/ORCL
+        username : scott
+        password : tangyuan
+        driverClassName : oracle.jdbc.driver.OracleDriver
+        initialSize : 5
+        minIdle : 5
+        maxActive : 100
+        maxWait : 60000
+        poolPreparedStatements : true
+        maxPoolPreparedStatementPerConnectionSize : 100
+        validationQuery : SELECT 1 FROM DUAL
+        testOnBorrow : false
+        testWhileidle : true
+        filters: stat,wall,LOG4J
+        timeBetweenEvictionRunsMillis : 18800
+        connectionProperties : druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+  mvc:
+        view:
+            prefix: /WEB-INF/jsp/
+            suffix: .jsp
